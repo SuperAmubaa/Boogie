@@ -5,8 +5,8 @@
 
     <!-- Page Heading -->
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="/beranda">Dashboard</a></li>
-        <li class="breadcrumb-item">Barang Masuk</li>
+        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item">Barang Keluar</li>
     </ol>
   
     <!-- DataTales Example -->
@@ -14,7 +14,6 @@
         <div class="card-header py-3">
             <a href="/barang_keluar/create" class="btn btn-sm btn-primary">Tambah Barang Keluar</a>
         <div class="card-body">
-            <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
             <tr>
@@ -54,7 +53,7 @@
             @endforeach
         </tbody>
 </table>
-</div>
+
         </div>
     </div>
 </div>

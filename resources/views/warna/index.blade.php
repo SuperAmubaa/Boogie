@@ -14,7 +14,6 @@
         <div class="card-header py-3">
             <a href="/warna/create" class="btn btn-sm btn-primary">Tambah Kode Warna</a>
         <div class="card-body">
-            <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
             <tr>
@@ -43,7 +42,6 @@
     </thead>
 </table>
 </div>
-        </div>
     </div>
 </div>
 @endsection

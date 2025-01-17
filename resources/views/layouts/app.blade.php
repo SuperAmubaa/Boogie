@@ -16,6 +16,8 @@
 
     <!-- Custom styles for this template-->
     <link href="http://127.0.0.1:8000/assets/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap4.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -41,6 +43,11 @@
 
 
             <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Dashboard</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -233,6 +240,15 @@
 
                     <!-- Additional script in the assets folder -->
                     <script src="{{ asset('assets/js/demo/chart-pie-demo.js') }}"></script>
+                    <!-- Datatables -->
+                    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+                    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap4.js"></script>
+                    <script>
+                        new DataTable('#dataTable');
+                    </script>
 
 </body>
 

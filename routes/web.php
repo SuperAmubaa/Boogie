@@ -8,6 +8,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\WarnaController;
+use App\Http\Controllers\DashboardController;
 
 // routes/web.php
 
@@ -24,6 +25,8 @@ Route::resource('/barang_keluar', BarangKeluarController::class);
 Route::resource('/katalog', KatalogController::class);
 Route::resource('/warna', WarnaController::class);
 Route::get('/get-warna/{katalogId}', [BarangMasukController::class, 'getWarna']);
+Route::get('/dashboard', [DashboardController::class, 'index']);
+
 
 // Route::get('/bahanbaku', [BahanBakuController::class, 'index'])->name('bahanbaku.index');
 // Route::get('/bahanbaku/create', [BahanBakuController::class, 'create'])->name('bahanbaku.create');

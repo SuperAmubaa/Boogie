@@ -5,7 +5,7 @@
 
     <!-- Page Heading -->
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="/beranda">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
         <li class="breadcrumb-item">Barang Masuk</li>
     </ol>
   
@@ -13,9 +13,8 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <a href="/barang_masuk/create" class="btn btn-sm btn-primary">Tambah Barang Masuk</a>
-        <div class="card-body">
-            <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <div class="card-body ">
+            <table class="table table-bordered mt-3 " id="dataTable" width="100%" cellspacing="0">
             <thead>
             <tr>
             <th>No</th>
@@ -54,7 +53,6 @@
             @endforeach
         </tbody>
 </table>
-</div>
         </div>
     </div>
 </div>
