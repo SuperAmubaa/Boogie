@@ -18,15 +18,16 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
             <tr>
-            <th>No</th>
-            <th>Nama Pegawai</th>
-            <th>Nama Produk</th>
-            <th>Kategori Produk</th>
-            <th>Jumlah Stok Masuk</th>
-            <th>Satuan</th>
-            <th>Tanggal Masuk</th>
-            <th>Keterangan</th>
-            <th>Action</th>
+                <th>No</th>
+                <th>Nama Pegawai</th>
+                <th>Kategori Produk</th>
+                <th>Nama Katalog</th>
+                <th>Code Warna</th>
+                <th>Jumlah Stok Masuk</th>
+                <th>Satuan</th>
+                <th>Tanggal Keluar</th>
+                <th>Keterangan</th>
+                <th>Action</th>
         </tr>
     </thead>
         <tbody>
@@ -34,8 +35,9 @@
             <tr>
                 <th scope="row">{{ $key + 1 }}</th>
                 <td>{{ $item->user_name }}</td>
-                <td>{{ $item->nama_produk }}</td>
                 <td>{{ $item->kategori_name }}</td>
+                <td>{{ $item->katalog_name }}</td>
+                <td>{{ $item->warna_name }}</td>
                 <td>{{ $item->stok_keluar }}</td>
                 <td>{{ $item->satuan }}</td>
                 <td>{{ \Carbon\Carbon::parse($item->tanggal_keluar)->translatedFormat('d F Y') }}</td>

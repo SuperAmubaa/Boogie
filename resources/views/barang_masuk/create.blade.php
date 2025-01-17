@@ -70,7 +70,7 @@ $rs2 = App\Models\User::all();
         <div class="form-group">
             <label for="stok_masuk">Satuan</label>
             <input type="text" name="satuan" id="satuan" class="form-control @error('satuan') is-invalid @enderror" required>
-            @error('stok_masuk')
+            @error('satuan')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

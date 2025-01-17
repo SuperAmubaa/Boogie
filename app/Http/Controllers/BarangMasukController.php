@@ -83,38 +83,50 @@ class BarangMasukController extends Controller
 
         return redirect('/barang_masuk');
     }
-
     public function edit($id)
     {
-        $barang_masuk = BarangMasuk::find($id);
-        return view('barang_masuk.edit', compact('barang_masuk'));
+        $barang_masuk = BarangMasuk::findOrFail($id);
+        $userss = User::all(); // Data pegawai
+        $katalogs = Katalog::all(); // Data katalog
+        $warnas = Warna::all(); // Data warna
+        $kategoris = Kategori::all(); // Data kategori
+    
+        return view('barang_masuk.edit', compact('barang_masuk', 'userss', 'katalogs', 'warnas', 'kategoris'));
     }
     
-
     public function update(Request $request, $id)
-    {
-        // Validation logic here
-        $request->validate([
-            'users_id' => 'required',
-            'nama_produk' => 'required',
-            'kategori_id' => 'required',
-            'stok_masuk' => 'required|integer',
-            'tanggal_masuk' => 'required|date',
-            'keterangan' => 'required',
-        ]);
+{
+    // Validasi input
+    // $request->validate([
+    //     'users_id' => 'required|exists:users,id',
+    //     'katalog_id' => 'required|exists:katalogs,id',
+    //     'warna_id' => 'required|exists:warnas,id',
+    //     'kategori_id' => 'required|exists:kategori,id',
+    //     'stok_masuk' => 'required|numeric|min:1',
+    //     'satuan' => 'required|string|max:50',
+    //     'tanggal_masuk' => 'required|date',
+    //     'keterangan' => 'nullable|string|max:255',
+    // ]);
 
-        $barang_masuk = BarangMasuk::find($id);
-        $barang_masuk->users_id = $request->users_id;
-        $barang_masuk->katalog_id = $request->katalog_id;
-        $barang_masuk->warna_id = $request->warna_id;
-        $barang_masuk->kategori_id = $request->kategori_id;
-        $barang_masuk->stok_masuk = $request->stok_masuk;
-        $barang_masuk->satuan = $request->satuan;
-        $barang_masuk->tanggal_masuk = $request->tanggal_masuk;
-        $barang_masuk->keterangan = $request->keterangan;
-        $barang_masuk->update();
-        return redirect('/barang_masuk');
-    }
+    // Mengambil data barang masuk
+    $barang_masuk = BarangMasuk::findOrFail($id);
+
+    // Update data menggunakan mass assignment
+    $barang_masuk->update([
+        'users_id' => $request->users_id,
+        'katalog_id' => $request->katalog_id,
+        'warna_id' => $request->warna_id,
+        'kategori_id' => $request->kategori_id,
+        'stok_masuk' => $request->stok_masuk,
+        'satuan' => $request->satuan,
+        'tanggal_masuk' => $request->tanggal_masuk,
+        'keterangan' => $request->keterangan,
+    ]);
+
+    // Redirect dengan pesan sukses
+    return redirect('/barang_masuk')->with('success', 'Data Barang Masuk berhasil diperbarui.');
+}
+
 
     public function destroy($id)
     {

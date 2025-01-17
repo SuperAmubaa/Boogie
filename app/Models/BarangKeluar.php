@@ -11,7 +11,7 @@ class BarangKeluar extends Model
     use HasFactory;
     public $timestamps = false; 
     protected $table = 'barang_keluar';
-    protected $fillable = ['users_id', 'katalog_id', 'warna_id', 'nama_produk', 'kategori_id', 'stok_keluar', 'tanggal_keluar', 'keterangan'];
+    protected $fillable = ['users_id', 'katalog_id', 'warna_id', 'kategori_id', 'stok_keluar', 'tanggal_keluar', 'keterangan'];
     
     public function users()
     {
@@ -22,4 +22,13 @@ class BarangKeluar extends Model
     {
         return $this->belongsTo(Kategori::class, 'kategori_id');
     }  
+    public function katalog()
+    {
+        return $this->belongsTo(Katalog::class);
+    }
+
+    public function warna()
+    {
+        return $this->belongsTo(Warna::class);
+    }
 }
