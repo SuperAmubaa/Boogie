@@ -24,4 +24,25 @@ class DashboardController extends Controller
     return view('dashboard', compact('data'));
 }
 
+public function show($kode_warna)
+{
+    // Ambil data riwayat stok berdasarkan kode warna
+    $riwayat = DB::table('barang_masuk')
+        ->leftJoin('barang_keluar', 'barang_masuk.warna_id', '=', 'barang_keluar.warna_id')
+        ->join('warna', 'warna.id', '=', 'barang_masuk.warna_id')
+        ->select(
+            'warna.kode_warna',
+            'barang_masuk.tanggal_masuk',
+            'barang_masuk.stok_masuk',
+            'barang_keluar.tanggal_keluar',
+            'barang_keluar.stok_keluar'
+        )
+        ->where('warna.kode_warna', $kode_warna)
+        ->orderBy('barang_masuk.tanggal_masuk', 'asc')
+        ->get();
+
+    // Kirim data ke view
+    return view('dashboard.show', compact('riwayat', 'kode_warna'));
+}
+
 }

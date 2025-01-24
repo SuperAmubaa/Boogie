@@ -25,7 +25,10 @@ Route::resource('/barang_keluar', BarangKeluarController::class);
 Route::resource('/katalog', KatalogController::class);
 Route::resource('/warna', WarnaController::class);
 Route::get('/get-warna/{katalogId}', [BarangMasukController::class, 'getWarna']);
+Route::get('/get-sisa-stok/{warnaId}', [BarangKeluarController::class, 'getSisaStok']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard/{kode_warna}', [DashboardController::class, 'show'])->name('dashboard.show');
+
 
 
 // Route::get('/bahanbaku', [BahanBakuController::class, 'index'])->name('bahanbaku.index');

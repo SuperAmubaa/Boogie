@@ -22,7 +22,7 @@
                 <th>Kategori Produk</th>
                 <th>Nama Katalog</th>
                 <th>Code Warna</th>
-                <th>Jumlah Stok Masuk</th>
+                <th>Jumlah Stok Keluar</th>
                 <th>Satuan</th>
                 <th>Tanggal Keluar</th>
                 <th>Keterangan</th>

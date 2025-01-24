@@ -58,12 +58,21 @@
         </div>
 
         <div class="form-group">
-            <label for="stok_masuk">Jumlah Stok Keluar</label>
+            <label for="sisa_stok">Sisa Stok</label>
+            <input type="number" id="sisa_stok" class="form-control" readonly>
+        </div>
+        
+
+        <div class="form-group">
+            <label for="stok_keluar">Jumlah Stok Keluar</label>
             <input type="number" name="stok_keluar" id="stok_keluar" class="form-control @error('stok_keluar') is-invalid @enderror" required>
             @error('stok_keluar')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+    
+        <div id="stok-warning" style="color: red; display: none;">Stok keluar melebihi sisa stok!</div>
+
         <div class="form-group">
             <label for="stok_masuk">Satuan</label>
             <input type="text" name="satuan" id="satuan" class="form-control @error('satuan') is-invalid @enderror" required>
@@ -111,5 +120,51 @@
                 });
             });
     });
+
+    document.getElementById('warna_id').addEventListener('change', function () {
+    var warnaId = this.value;
+
+    // Ambil sisa stok berdasarkan warna_id
+    fetch(`/get-sisa-stok/${warnaId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Sisa Stok:', data); // Debugging
+            document.getElementById('sisa_stok').value = data.sisa_stok || 0;
+
+            // Cek jika stok keluar lebih besar dari sisa stok
+            document.getElementById('stok_keluar').addEventListener('input', function () {
+                var stokKeluar = parseInt(this.value);
+                var sisaStok = data.sisa_stok || 0;
+                
+                // Tampilkan peringatan jika stok keluar lebih besar dari sisa stok
+                if (stokKeluar > sisaStok) {
+                    document.getElementById('stok-warning').style.display = 'block';
+                } else {
+                    document.getElementById('stok-warning').style.display = 'none';
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+});
+
+document.getElementById('form-barang-keluar').addEventListener('submit', function(event) {
+    var stokKeluar = parseInt(document.getElementById('stok_keluar').value);
+    var sisaStok = parseInt(document.getElementById('sisa_stok').value); // Ambil nilai sisa_stok yang sudah diisi
+
+    // Cek jika stok keluar lebih besar dari sisa stok
+    if (stokKeluar > sisaStok) {
+        event.preventDefault(); // Mencegah form untuk disubmit
+        alert("Stok keluar melebihi sisa stok!"); // Tampilkan pesan peringatan
+    }
+});
+
 </script>
+
 @endsection

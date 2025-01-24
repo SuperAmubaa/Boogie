@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BarangKeluar;
 use Illuminate\Http\Request;
+use App\Models\BarangKeluar;
+use App\Models\BarangMasuk;
 use App\Models\User;
 use App\Models\Kategori;
 use App\Models\Katalog;
 use App\Models\Warna;  
+use Illuminate\Support\Facades\DB;
 
 class BarangKeluarController extends Controller
 {
@@ -54,6 +56,22 @@ class BarangKeluarController extends Controller
         // 'tanggal_keluar' => 'required|date',
         // 'keterangan' => 'required',
     ]);
+
+    $warnaId = $request->warna_id;
+    $stokMasuk = DB::table('barang_masuk')
+        ->where('warna_id', $warnaId)
+        ->sum('stok_masuk');
+    
+    $stokKeluar = DB::table('barang_keluar')
+        ->where('warna_id', $warnaId)
+        ->sum('stok_keluar');
+    
+    $sisaStok = $stokMasuk - $stokKeluar;
+
+    // Cek apakah stok keluar melebihi sisa stok
+    if ($request->stok_keluar > $sisaStok) {
+        return redirect()->back()->withErrors(['stok_keluar' => 'Stok keluar melebihi sisa stok!']);
+    }
 
       $barang_keluar = new BarangKeluar;
 
@@ -118,4 +136,28 @@ class BarangKeluarController extends Controller
         BarangKeluar::find($id)->delete();
         return redirect()->route('barang_keluar.index')->with('success', 'Barang deleted successfully!');
     }
+
+    public function getSisaStok($warnaId)
+{
+    try {
+        // Ambil stok masuk
+        $stokMasuk = BarangMasuk::where('warna_id', $warnaId)->sum('stok_masuk');
+
+        // Ambil stok keluar
+        $stokKeluar = BarangKeluar::where('warna_id', $warnaId)->sum('stok_keluar');
+
+        // Hitung sisa stok
+        $sisaStok = $stokMasuk - $stokKeluar;
+
+        // Kembalikan data dalam format JSON
+        return response()->json(['sisa_stok' => $sisaStok]);
+    } catch (\Exception $e) {
+        // Log error untuk debugging
+        \Log::error('Error fetching sisa stok: ' . $e->getMessage());
+        return response()->json(['error' => 'Gagal mengambil data sisa stok.'], 500);
+    }
+}
+
+    
+
 }

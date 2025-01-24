@@ -19,6 +19,7 @@
                 <th>Stok Masuk</th>
                 <th>Stok Keluar</th>
                 <th>Sisa Stok</th>
+                <th>Action</th>
         </tr>
     </thead>
         <tbody>
@@ -29,6 +30,10 @@
                     <td>{{ $item->stok_masuk ?? 0 }}</td>
                     <td>{{ $item->stok_keluar ?? 0 }}</td>
                     <td>{{ $item->sisa_stok ?? 0 }}</td>
+                    <td>
+                        <a href="{{ route('dashboard.show', $item->kode_warna) }}" class="btn btn-info btn-sm">Lihat Riwayat</a>
+                    </td>
+                    
             </tr>
             @endforeach
         </tbody>
