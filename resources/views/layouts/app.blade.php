@@ -18,13 +18,16 @@
     <link href="http://127.0.0.1:8000/assets/css/sb-admin-2.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul style="background-color: skyblue;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-light bg-light accordion text-dark" id="accordionSidebar">
+
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div>
@@ -45,12 +48,12 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="/dashboard">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fa-solid fa-house"></i>
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fa-solid fa-business-time"></i>
                     <span>Barang</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -66,15 +69,15 @@
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Penyesuaian</span>
+                    <i class="fa-solid fa-book"></i>
+                    <span>Manajemen Atribut</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" >
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Penyesuaian:</h6>
                         <a class="collapse-item" href="/kategori">Kategori</a>
                         <a class="collapse-item" href="/katalog">Katalog</a>
-                        <a class="collapse-item" href="/warna">Warna</a>
+                        <a class="collapse-item" href="/warna">Kode Warna</a>
                     </div>
                 </div>
             </li>
@@ -82,7 +85,7 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="/user">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fa-solid fa-user"></i>
                     <span>User</span></a>
             </li>
 
@@ -101,23 +104,12 @@
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
-                <nav style="background-color: #1E90FF;" class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow">
+                <nav style="background-color: #1E90FF;" class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Cari..." aria-label="Search" aria-describedby="basic-addon2" />
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -141,11 +133,9 @@
                             </div>
                         </li>
 
-
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" style="margin-top: 15px;">
+                        <a role="button" style="margin-top: 22px;">
                             {{ Auth::user()->name }}
                         </a>
-
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -241,7 +231,6 @@
                     <!-- Additional script in the assets folder -->
                     <script src="{{ asset('assets/js/demo/chart-pie-demo.js') }}"></script>
                     <!-- Datatables -->
-                    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
                     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
