@@ -51,6 +51,7 @@
                     <i class="fa-solid fa-house"></i>
                     <span>Dashboard</span></a>
             </li>
+          
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa-solid fa-business-time"></i>
@@ -65,7 +66,7 @@
                 </div>
             </li>
 
-
+            @if(Auth::check() && Auth::user()->role && Auth::user()->role->role == 'admin')
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -81,13 +82,16 @@
                     </div>
                 </div>
             </li>
+            @endif
 
+            @if(Auth::check() && Auth::user()->role && Auth::user()->role->role == 'superadmin')
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="/user">
                     <i class="fa-solid fa-user"></i>
                     <span>User</span></a>
             </li>
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block" />
@@ -97,6 +101,14 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
         </ul>
+  {{-- @if(Auth::user()->role == 'superadmin')
+        @endif
+
+        @if(in_array(Auth::user()->role, ['admin', 'superadmin']))
+        @endif
+
+        @if(in_array(Auth::user()->role, ['petugas', 'admin', 'superadmin']))
+        @endif --}}
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

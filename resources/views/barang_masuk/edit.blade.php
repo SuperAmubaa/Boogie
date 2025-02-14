@@ -10,18 +10,10 @@
 
         <div class="form-group">
             <label for="users_id">Nama Pegawai</label>
-            <select name="users_id" id="users_id" class="form-control @error('users_id') is-invalid @enderror" required>
-                <option value="" disabled>Pilih Pegawai</option>
-                @foreach($userss as $user)
-                    <option value="{{ $user->id }}" {{ $barang_masuk->users_id == $user->id ? 'selected' : '' }}>
-                        {{ $user->name }}
-                    </option>
-                @endforeach
-            </select>
-            @error('users_id')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+            <input type="text" class="form-control" value="{{ auth()->user()->name }}" readonly>
+            <input type="hidden" name="users_id" value="{{ auth()->user()->id }}">
         </div>
+        
 
         <div class="form-group">
             <label for="katalog_id">Nama Katalog</label>
@@ -71,7 +63,7 @@
         <div class="form-group">
             <label for="stok_masuk">Jumlah Stok Masuk</label>
             <input type="number" name="stok_masuk" id="stok_masuk" class="form-control @error('stok_masuk') is-invalid @enderror" 
-                   value="{{ old('stok_masuk', $barang_masuk->stok_masuk) }}" required>
+                   value="{{ old('stok_masuk', $barang_masuk->stok_masuk) }}" required disabled>
             @error('stok_masuk')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -102,6 +94,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/dashboard" class="btn btn-secondary">Kembali</a>
     </form>
 </div>
 <script>

@@ -3,6 +3,8 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Auth\Middleware\Authenticate as Middleware;
+
 
 class Kernel extends HttpKernel
 {
@@ -21,6 +23,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        
     ];
 
     /**
@@ -53,7 +56,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
@@ -63,5 +66,10 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
+        'superadmin'=> \App\Http\Middleware\SuperAdminMiddleware::class,
+        'admin'=> \App\Http\Middleware\AdminMiddleware::class,
+        'petugas'=> \App\Http\Middleware\PetugasMiddleware::class,
+        
     ];
 }

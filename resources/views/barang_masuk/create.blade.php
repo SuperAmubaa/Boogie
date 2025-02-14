@@ -1,28 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-@php 
-$rs2 = App\Models\User::all();   
-@endphp
 <div class="container-fluid">
     <h3 class="mb-4">Tambah Barang Masuk</h3>
 
     <form method="POST" action="{{ route('barang_masuk.store') }}">
         @csrf
         <div class="form-group">
-            <label>Nama Pegawai</label>
-            <select class="form-control @error('users_id') is-invalid @enderror" name="users_id" >
-                <option value="">--- Pilih Pegawai ---</option>
-                @foreach($rs2 as $us)
-                <option value="{{$us->id}}">{{$us->name}}</option>
-                @endforeach
-              </select>
-              @error('kategori_id')
-              <div class="invalid-feedback">
-                  {{ $message }}
-              </div>
-              @enderror
+            <label for="users_id">Nama Pegawai</label>
+            <input type="text" class="form-control" value="{{ auth()->user()->name }}" readonly>
+            <input type="hidden" name="users_id" value="{{ auth()->user()->id }}">
         </div>
+        
         <div class="form-group">
             <label for="katalog_id">Nama Katalog</label>
             <select name="katalog_id" id="katalog_id" class="form-control @error('katalog_id') is-invalid @enderror" required>
@@ -92,6 +81,7 @@ $rs2 = App\Models\User::all();
         </div>
 
         <button type="submit" class="btn btn-primary">Simpan</button>
+        <a href="/barang_masuk" class="btn btn-secondary">Kembali</a>
     </form>
 </div>
 

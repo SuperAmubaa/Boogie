@@ -39,10 +39,10 @@ class BarangMasukController extends Controller
     // Mengambil data katalog dan kategori
     $katalogs = Katalog::all(); // Ambil semua data katalog
     $kategoris = Kategori::all(); // Ambil semua data kategori
-    $userss = User::all(); // Ambil semua data kategori
+    $userss = auth()->user();
 
     // Kirim data ke view
-    return view('barang_masuk.create', compact('katalogs', 'kategoris'));
+    return view('barang_masuk.create', compact('katalogs', 'kategoris', 'userss'));
 
     }
 
@@ -86,7 +86,7 @@ class BarangMasukController extends Controller
     public function edit($id)
     {
         $barang_masuk = BarangMasuk::findOrFail($id);
-        $userss = User::all(); // Data pegawai
+        $userss = auth()->user();
         $katalogs = Katalog::all(); // Data katalog
         $warnas = Warna::all(); // Data warna
         $kategoris = Kategori::all(); // Data kategori

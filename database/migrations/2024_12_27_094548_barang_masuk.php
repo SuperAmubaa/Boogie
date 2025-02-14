@@ -23,7 +23,8 @@ return new class extends Migration
             $table->foreign('warna_id')->references('id')->on('warna')->onDelete('cascade');
             $table->unsignedBigInteger('kategori_id');
             $table->foreign('kategori_id')->references('id')->on('kategori');
-            $table->integer('stok_masuk'); 
+            $table->integer('stok_masuk');
+            $table->string('satuan'); 
             $table->date('tanggal_masuk'); 
             $table->text('keterangan')->nullable();
         });
